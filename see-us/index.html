@@ -197,22 +197,100 @@
     <div class="bg-white/5 border border-white/15 rounded-lg p-8 max-w-md mx-auto">
       <p class="text-white/70 text-sm mb-4">Petition link coming soon. Enter your email and we will send you the link the moment it goes live.</p>
 
-      <form id="petition-form" class="space-y-4 text-left" method="POST" name="petition-signup" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="petition-signup" />
-        <input type="hidden" name="subject" value="See Us Campaign - petition notification request" />
-        <input type="hidden" name="source" value="see-us-landing-page" />
-        <p class="hidden"><label>Do not fill this out: <input name="bot-field" /></label></p>
-        <input name="name" required placeholder="Your name" class="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 px-4 py-3.5 focus:outline-none focus:border-sj-accent transition-colors" />
-        <input name="email" type="email" required placeholder="Your email" class="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 px-4 py-3.5 focus:outline-none focus:border-sj-accent transition-colors" />
-        <label class="flex gap-3 text-sm text-white/60 items-start">
-          <input name="consent" type="checkbox" value="true" required class="mt-1 flex-shrink-0" />
-          <span>I agree to receive emails from Sensory Justice. I can unsubscribe at any time.</span>
-        </label>
-        <button type="submit" class="w-full bg-sj-accent text-white font-semibold px-8 py-4 hover:opacity-90 transition-opacity text-base">
-          Notify Me When the Petition Goes Live
-        </button>
-        <p id="petition-status" class="text-sm text-white/60 text-center" aria-live="polite"></p>
-      </form>
+      <div style="width: 100%;">
+      <style>
+        
+          background: transparent !important;
+          border: none !important;
+          max-width: 100% !important;
+        }
+        
+          padding: 0 !important;
+        }
+        
+          display: none !important;
+        }
+        
+          background-color: rgba(255,255,255,0.1) !important;
+          color: 
+          border: 1px solid rgba(255,255,255,0.2) !important;
+          border-radius: 0 !important;
+          font-family: Inter, sans-serif !important;
+          font-size: 16px !important;
+          padding: 14px 16px !important;
+        }
+        
+          color: rgba(255,255,255,0.5) !important;
+        }
+        
+          background-color: 
+          color: 
+          border: none !important;
+          border-radius: 0 !important;
+          font-family: Inter, sans-serif !important;
+          font-weight: 600 !important;
+          font-size: 16px !important;
+          padding: 14px !important;
+        }
+        
+          opacity: 0.9;
+        }
+        
+          color: 
+          font-family: Inter, sans-serif !important;
+        }
+        
+          color: rgba(255,255,255,0.8) !important;
+          font-family: Inter, sans-serif !important;
+        }
+      </style>
+      <style type="text/css">@import url("https://assets.mlcdn.com/fonts.css?version=1785851");</style>
+<div id="mlb2-44601181" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-44601181">
+  <div class="ml-form-align-center ">
+    <div class="ml-form-embedWrapper embedForm">
+      <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+        <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2562351/forms/195152463644329032/subscribe" data-code="" method="post" target="_blank">
+          <div class="ml-form-formContent">
+            <div class="ml-form-fieldRow ml-last-item">
+              <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                <input aria-label="email" aria-required="true" type="email" class="form-control" data-inputmask="" name="fields[email]" placeholder="Your email" autocomplete="email">
+              </div>
+            </div>
+          </div>
+          <div class="ml-form-recaptcha ml-validate-required" style="float: left;">
+            <script src="https://www.google.com/recaptcha/api.js"></script>
+            <div class="g-recaptcha" data-sitekey="6Lf1KHQUAAAAAFNKEX1hdSWCS3mRMv4FlFaNslaD"></div>
+          </div>
+          <input type="hidden" name="ml-submit" value="1">
+          <div class="ml-form-embedSubmit">
+            <button type="submit" class="primary">Join the Movement</button>
+            <button disabled="disabled" style="display: none;" type="button" class="loading">
+              <div class="ml-form-embedSubmitLoad"></div>
+              <span class="sr-only">Loading...</span>
+            </button>
+          </div>
+          <input type="hidden" name="anticsrf" value="true">
+        </form>
+      </div>
+      <div class="ml-form-successBody row-success" style="display: none">
+        <div class="ml-form-successContent">
+          <h4>Thank you!</h4>
+          <p>You have successfully joined our subscriber list.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function ml_webform_success_44601181() {
+    var $ = ml_jQuery || jQuery;
+    $('.ml-subscribe-form-44601181 .row-success').show();
+    $('.ml-subscribe-form-44601181 .row-form').hide();
+  }
+</script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
+
+    </div>
     </div>
   </div>
 </section>
@@ -384,55 +462,7 @@
   </div>
 </footer>
 
-<script>
-const petitionForm = document.querySelector("#petition-form");
-petitionForm?.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const statusEl = document.querySelector("#petition-status");
-  const submitButton = petitionForm.querySelector('button[type="submit"]');
-  submitButton.disabled = true;
-  statusEl.textContent = "Adding you to the list...";
-
-  try {
-    const response = await fetch("/see-us", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(new FormData(petitionForm)).toString()
-    });
-    if (!response.ok) throw new Error("Submission failed");
-    statusEl.textContent = "You are on the list. We will email you the moment the petition goes live.";
-    petitionForm.reset();
-  } catch (error) {
-    statusEl.textContent = "Something went wrong. Please try again or email hello@sensoryjustice.co.uk";
-  } finally {
-    submitButton.disabled = false;
-  }
-});
-
-const storyForm = document.querySelector("#story-form");
-storyForm?.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const statusEl = document.querySelector("#story-status");
-  const submitButton = storyForm.querySelector('button[type="submit"]');
-  submitButton.disabled = true;
-  statusEl.textContent = "Submitting your story...";
-
-  try {
-    const response = await fetch("/see-us", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(new FormData(storyForm)).toString()
-    });
-    if (!response.ok) throw new Error("Submission failed");
-    statusEl.textContent = "Thank you. Your story has been received. We will be in touch.";
-    storyForm.reset();
-  } catch (error) {
-    statusEl.textContent = "Something went wrong. Please try again or email hello@sensoryjustice.co.uk";
-  } finally {
-    submitButton.disabled = false;
-  }
-});
-</script>
+<!-- MailerLite handles petition form JS -->
 
 </body>
 </html>
